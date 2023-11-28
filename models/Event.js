@@ -4,6 +4,7 @@ const { Schema, model } = mongoose;
 const eventSchema = new Schema({
     title: {type: String, required: true},
     category: {type: String, required: true},
+    subcategories: [{type: String}],
     description: {type: String, required: true},
     district: {type: String, required: true},
     location: {type: String, required: true},

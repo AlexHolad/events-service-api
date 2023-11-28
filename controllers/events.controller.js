@@ -42,6 +42,7 @@ export const addEvent = () => async (req, res) => {
   const {
     title,
     category,
+    subcategories,
     description,
     district,
     address,
@@ -49,23 +50,24 @@ export const addEvent = () => async (req, res) => {
     date,
     img,
   } = req.body;
-   console.log(req.body)
+  
+  console.log('Type of SUBCATEGORIES', subcategories, typeof subcategories)
+
   const email = req.email;
-  console.log('Email',email)
   const user = await User.findOne({ email: email })
-  console.log('User', user)
   const userId = req._id
   
 try {
   const event = new Event({
-    title: title,
-    category: category,
-    description: description,
-    district: district,
-    address: address,
-    location: location,
-    date: date,
-    img: img,
+    title,
+    category,
+    subcategories,
+    description,
+    district,
+    address,
+    location,
+    date,
+    img,
     author: userId,
   });
   console.log('New event', event)
@@ -89,7 +91,7 @@ try {
 };
 
 export const updateEvent = () => async (req, res) => {
-  const { _id, title, category, description, district, location, date, img } =
+  const { _id, title, category, subcategories, description, district, location, date, img } =
     req.body;
 
   try {
@@ -101,6 +103,9 @@ export const updateEvent = () => async (req, res) => {
       }
       if (category) {
         changesObj.category = category;
+      }
+      if(subcategories.length > 0){
+        changesObj.subcategories = subcategories
       }
       if (description) {
         changesObj.description = description;
@@ -117,6 +122,7 @@ export const updateEvent = () => async (req, res) => {
       if (img) {
         changesObj.img = img;
       }
+      
 
       return changesObj;
     };
