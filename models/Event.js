@@ -6,7 +6,6 @@ const eventSchema = new Schema({
     category: {type: String, required: true},
     subcategories: [{type: String}],
     description: {type: String, required: true},
-    district: {type: String, required: true},
     location: {type: String, required: true},
     address: {type: String, required: true},
     date: {type: Date, required: true},

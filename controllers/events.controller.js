@@ -44,7 +44,6 @@ export const addEvent = () => async (req, res) => {
     category,
     subcategories,
     description,
-    district,
     address,
     location,
     date,
@@ -63,7 +62,6 @@ try {
     category,
     subcategories,
     description,
-    district,
     address,
     location,
     date,
@@ -91,7 +89,7 @@ try {
 };
 
 export const updateEvent = () => async (req, res) => {
-  const { _id, title, category, subcategories, description, district, location, date, img } =
+  const { _id, title, category, subcategories, description, location, date, img } =
     req.body;
 
   try {
@@ -109,9 +107,6 @@ export const updateEvent = () => async (req, res) => {
       }
       if (description) {
         changesObj.description = description;
-      }
-      if (district) {
-        changesObj.district = district;
       }
       if (location) {
         changesObj.location = location;
