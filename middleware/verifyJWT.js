@@ -19,4 +19,5 @@ export const verifyJWT = (req, res, next) => {
             next()  
         }
     );
+
   };
