@@ -43,7 +43,7 @@ export const generateAccessToken = (user) => {
         _id: userId
       },
     process.env.ACCESS_TOKEN_SECRET,
-    { expiresIn: "15m" }
+    { expiresIn: "1h" }
   );
 };
 
@@ -54,7 +54,7 @@ export const generateRefreshToken = (user) => {
     },
     process.env.REFRESH_TOKEN_SECRET,
     {
-      expiresIn: "1h",
+      expiresIn: "24h",
     }
   );
 };

@@ -9,14 +9,14 @@ export const handleRegister = (bcrypt) => async (req, res) => {
   const { email, password } = req.body;
   // VALIDATION
   if (!email || !password) {
-    return res.status(400).json("incorrect form submission")
+    return res.status(400).json("Введите логин и пароль")
   }
 
   // CHECK IF USER ALREADY EXIST IN DATABASE
   const isExist = await User.findOne({ email: email })
 
   if (isExist !== null) {
-    return res.status(409).send("User with this email already exist")
+    return res.status(409).send("Аккаунт с таким email уже существует")
   } else {
     try {
       const saltRounds = 10;
@@ -42,7 +42,7 @@ export const handleRegister = (bcrypt) => async (req, res) => {
           maxAge: 7 * 24 * 60 * 60 * 1000, // cookie expiry: set to match rT
         });
 
-        res.json({ accessToken })
+        return res.json({ accessToken })
       });
     } catch (err) {
       res.status(400).send("Bad request")

@@ -10,7 +10,7 @@ export const handleSignIn = (bcrypt) => async (req, res) => {
   console.log(req.body);
   // VALIDATION
   if (!email || !password) {
-    return res.status(400).json({ message: "Введите логин и пароль" });
+    return res.status(400).json("Введите логин и пароль");
   }
 
   try {
@@ -20,7 +20,7 @@ export const handleSignIn = (bcrypt) => async (req, res) => {
     if (!foundUser) {
       return res
         .status(401)
-        .json({ message: "Аккаунт с таким email не существует" });
+        .json("Аккаунт с таким email не существует");
     }
 
     // Compare hashed password with password from client
@@ -28,7 +28,7 @@ export const handleSignIn = (bcrypt) => async (req, res) => {
     console.log(match)
     
     if (!match) {
-      return res.status(400).json({ message: "Неверная комбинация логина и пароля" });
+      return res.status(400).json("Неверная комбинация логина и пароля");
     } 
     
       const accessToken = generateAccessToken(foundUser);
@@ -45,6 +45,6 @@ export const handleSignIn = (bcrypt) => async (req, res) => {
       // Send token containing email and role
       return res.json({ accessToken });
  } catch (err) {
-    res.status(400).json({ message: "wrong credentials" });
+    res.status(400).json("Неверная комбинация логина и пароля");
   }
 }
