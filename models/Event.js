@@ -8,7 +8,7 @@ const eventSchema = new Schema({
     description: {type: String, required: true},
     location: {type: String, required: true},
     address: {type: String, required: true},
-    date: {type: Date, required: true},
+    date: {type: Date},
     img: {type: String, required: true},
     author: { type: Schema.Types.ObjectId, ref: "User" }
 });
