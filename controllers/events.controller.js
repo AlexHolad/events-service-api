@@ -47,6 +47,8 @@ export const addEvent = () => async (req, res) => {
     address,
     location,
     date,
+    dates,
+    range,
     img,
   } = req.body;
   
@@ -65,6 +67,8 @@ try {
     address,
     location,
     date,
+    dates,
+    range,
     img,
     author: userId,
   });
@@ -89,7 +93,8 @@ try {
 };
 
 export const updateEvent = () => async (req, res) => {
-  const { _id, title, category, subcategories, description, location, date, img } =
+  const { _id, title, category, subcategories, description, location, date, dates,
+    range, img } =
     req.body;
 
   try {
@@ -104,6 +109,12 @@ export const updateEvent = () => async (req, res) => {
       }
       if(subcategories.length > 0){
         changesObj.subcategories = subcategories
+      }
+      if(dates.length > 0){
+        changesObj.dates = dates
+      }
+      if(range.length > 0){
+        changesObj.range = range
       }
       if (description) {
         changesObj.description = description;

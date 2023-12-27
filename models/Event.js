@@ -9,6 +9,8 @@ const eventSchema = new Schema({
     location: {type: String, required: true},
     address: {type: String, required: true},
     date: {type: Date},
+    dates: [{type: Date}],
+    range: [{type: Date}],
     img: {type: String, required: true},
     author: { type: Schema.Types.ObjectId, ref: "User" }
 });
