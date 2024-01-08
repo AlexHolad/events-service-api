@@ -123,7 +123,7 @@ export const updateEvent = () => async (req, res) => {
       if (date) {
         changesObj.date = date;
       } else {
-        changesObj.dates = ""
+        changesObj.date = ""
       }
 
       if (img) {
