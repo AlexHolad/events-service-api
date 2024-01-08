@@ -2,7 +2,7 @@ import jwt from "jsonwebtoken";
 
 export const verifyJWT = (req, res, next) => {
     const authHeader = req.headers.authorization || req.headers.Authorization
-    console.log(authHeader)
+
     if(!authHeader?.startsWith('Bearer ')) {
         return res.status(401).json({ message: 'authHeader dont start with Bearer' })
     }

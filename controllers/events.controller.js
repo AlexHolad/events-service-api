@@ -15,9 +15,7 @@ export const getEvents = () => async (req, res) => {
 export const getUserEvents = () => async (req, res) => {
   try {
     const user = await User.findOne({email: req.email});
-    console.log(user)
     const userWithEvents = await user.populate('events')
-    console.log('eventslist:', userWithEvents.events)
     res.status(200).json(userWithEvents.events);
   } catch(err) {
     res.status(500).send(err)
@@ -26,8 +24,6 @@ export const getUserEvents = () => async (req, res) => {
 
 export const getEvent = () => async (req, res) => {
   const {eventId} = req.query
-  console.log(req)
-  console.log("EventId", eventId)
   try {
     const query = Event.where({ _id: eventId });
     const event = await query.findOne();
@@ -39,6 +35,7 @@ export const getEvent = () => async (req, res) => {
 };
 
 export const addEvent = () => async (req, res) => {
+  console.log(req.body)
   const {
     title,
     category,
@@ -51,8 +48,7 @@ export const addEvent = () => async (req, res) => {
     range,
     img,
   } = req.body;
-  
-  console.log('Type of SUBCATEGORIES', subcategories, typeof subcategories)
+
 
   const email = req.email;
   const user = await User.findOne({ email: email })
@@ -82,11 +78,11 @@ try {
   
   await user.save()
 
-
-
   res.status(201).json(event)
 
-} catch(e){
+} catch(err){
+  console.log(err)
+
   res.status(503).send("Unable to save Event")
 }
 
@@ -96,7 +92,7 @@ export const updateEvent = () => async (req, res) => {
   const { _id, title, category, subcategories, description, location, date, dates,
     range, img } =
     req.body;
-
+    console.log("From front", req.body)
   try {
     const saveNonEmptyValues = () => {
       let changesObj = {};
@@ -112,10 +108,12 @@ export const updateEvent = () => async (req, res) => {
       }
       if(dates.length > 0){
         changesObj.dates = dates
+      } else {
+        changesObj.dates = []
       }
       if(range.length > 0){
         changesObj.range = range
-      }
+      } 
       if (description) {
         changesObj.description = description;
       }
@@ -124,12 +122,15 @@ export const updateEvent = () => async (req, res) => {
       }
       if (date) {
         changesObj.date = date;
+      } else {
+        changesObj.dates = ""
       }
+
       if (img) {
         changesObj.img = img;
       }
       
-
+      console.log("For Saving Object", req.body)
       return changesObj;
     };
 
