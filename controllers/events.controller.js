@@ -46,7 +46,6 @@ export const addEvent = () => async (req, res) => {
     date,
     dates,
     period,
-    range,
     img,
   } = req.body;
 
@@ -66,7 +65,6 @@ try {
     date,
     dates,
     period,
-    range,
     img,
     author: userId,
   });
@@ -92,7 +90,7 @@ try {
 
 export const updateEvent = () => async (req, res) => {
   const { _id, title, category, subcategories, description, location, date, dates, period,
-    range, img } =
+     img } =
     req.body;
     console.log("From front", req.body)
   try {
@@ -113,9 +111,6 @@ export const updateEvent = () => async (req, res) => {
       } else {
         changesObj.dates = []
       }
-      if(range.length > 0){
-        changesObj.range = range
-      } 
       if (period) {
         changesObj.period = period;
       }
