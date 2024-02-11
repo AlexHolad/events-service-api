@@ -11,6 +11,7 @@ const eventSchema = new Schema({
     date: {type: Date},
     dates: [{type: Date}],
     period: {type: Boolean},
+    range: [{type: Date}],
     img: {type: String, required: true},
     author: { type: Schema.Types.ObjectId, ref: "User" }
 });

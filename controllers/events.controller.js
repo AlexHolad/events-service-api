@@ -43,7 +43,6 @@ export const addEvent = () => async (req, res) => {
     description,
     address,
     location,
-    date,
     dates,
     period,
     img,
@@ -62,7 +61,6 @@ try {
     description,
     address,
     location,
-    date,
     dates,
     period,
     img,
@@ -89,8 +87,8 @@ try {
 };
 
 export const updateEvent = () => async (req, res) => {
-  const { _id, title, category, subcategories, description, location, date, dates, period,
-     img } =
+  const { _id, title, category, subcategories, description, location, dates, period,
+    img } =
     req.body;
     console.log("From front", req.body)
   try {
@@ -120,12 +118,6 @@ export const updateEvent = () => async (req, res) => {
       if (location) {
         changesObj.location = location;
       }
-      if (date) {
-        changesObj.date = date;
-      } else {
-        changesObj.date = "";
-      }
-
       if (img) {
         changesObj.img = img;
       }
